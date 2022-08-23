@@ -45,6 +45,22 @@
                         <i class="el-icon-setting"></i>
                         <span slot="title">导航四</span>
                     </el-menu-item>
+                    <el-menu-item index="5">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">项目信息</span>
+                    </el-menu-item>
+                    <el-menu-item index="6">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">项目跟踪</span>
+                    </el-menu-item>
+                    <el-menu-item index="7">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">项目预审</span>
+                    </el-menu-item>
+                    <el-menu-item index="8">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">项目审核</span>
+                    </el-menu-item>
                 </el-menu>
 
             </el-aside>
