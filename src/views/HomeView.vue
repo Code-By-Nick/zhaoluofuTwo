@@ -13,14 +13,14 @@
                     <HomeMenu class="heightAll"></HomeMenu>
 <!--                </el-scrollbar>-->
             </el-aside>
-            <el-container>
+
 <!--                内容-->
                 <el-main>
                     <router-view></router-view>
                 </el-main>
 <!--                底部-->
-                <el-footer>Footer</el-footer>
-            </el-container>
+<!--                <el-footer>Footer</el-footer>-->
+
         </el-container>
     </el-container>
 </template>
@@ -68,9 +68,6 @@ export default {
     background-color: #f8f9fa;
 }
 
-.el-footer {
-    background-color: #b2f7ef;
-    border-radius: 20px;
-}
+
 
 </style>

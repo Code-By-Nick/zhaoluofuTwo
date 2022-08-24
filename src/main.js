@@ -13,7 +13,7 @@ import '@/mock/index'  //mock拦截请求
 import NProgress from 'nprogress'   // 导入 nprogress
 import 'nprogress/nprogress.css'   // 导入样式，否则看不到效果
 
-NProgress.configure({ showSpinner: false })   // 显示右上角螺旋加载提示
+NProgress.configure({ showSpinner: true })   // 显示右上角螺旋加载提示
 
 // router.beforeEach((to, from, next) => {
 //   NProgress.start()   // 开启进度条
