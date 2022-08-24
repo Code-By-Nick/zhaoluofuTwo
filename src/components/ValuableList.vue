@@ -1,4 +1,5 @@
 <template>
+<!--    有价值项目列表-->
     <el-card>
         <el-form :inline="true"  class="demo-form-inline">
             <el-form-item>
@@ -14,13 +15,13 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="sendRequest">发送</el-button>
+                <el-button type="danger" @click="sendRequest">发送请求</el-button>
             </el-form-item>
         </el-form>
 
         <!-- 表格-->
         <el-table :data="tableData" border stripe height="380" style="width: 100%">
-            <el-table-column type="selection" width="55"/>
+            <el-table-column type="selection"/>
             <el-table-column type="index" label="序号" />
             <el-table-column prop="username" label="引进战队" />
             <el-table-column prop="email" label="引进部门" />
