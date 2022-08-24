@@ -8,7 +8,11 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    children:[
+        {path: '/5', component: () => import('@/components/ValuableList')},
+      {path: '/101', component: () => import('@/components/TestTable')}
+      ]
   },
   {
     path: '/about',

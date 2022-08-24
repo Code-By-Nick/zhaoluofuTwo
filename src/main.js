@@ -8,6 +8,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import locale from 'element-ui/lib/locale/lang/en'
 
+import '@/mock/index'
+
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);

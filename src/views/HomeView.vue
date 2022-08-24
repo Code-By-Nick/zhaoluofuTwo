@@ -7,66 +7,17 @@
             </el-radio-group>
         </el-header>
         <el-container>
-            <el-aside width="200px">
-<!--菜单-->
-                <el-menu default-active="1-4-1"
-                         class="el-menu-vertical-demo"
-                         background-color="#e9ecef"
-                         @open="handleOpen"
-                         @close="handleClose"
-                         :collapse="isCollapse">
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span slot="title">导航一</span>
-                        </template>
-                        <el-menu-item-group>
-                            <span slot="title">分组一</span>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item index="1-3">选项3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-submenu index="1-4">
-                            <span slot="title">选项4</span>
-                            <el-menu-item index="1-4-1">选项1</el-menu-item>
-                        </el-submenu>
-                    </el-submenu>
-                    <el-menu-item index="2">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">导航二</span>
-                    </el-menu-item>
-                    <el-menu-item index="3" disabled>
-                        <i class="el-icon-document"></i>
-                        <span slot="title">导航三</span>
-                    </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">导航四</span>
-                    </el-menu-item>
-                    <el-menu-item index="5">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">项目信息</span>
-                    </el-menu-item>
-                    <el-menu-item index="6">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">项目跟踪</span>
-                    </el-menu-item>
-                    <el-menu-item index="7">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">项目预审</span>
-                    </el-menu-item>
-                    <el-menu-item index="8">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">项目审核</span>
-                    </el-menu-item>
-                </el-menu>
-
+            <el-aside width="200px" style="overflow:auto">
+<!--                <el-scrollbar style="height: 100%">-->
+                    <!--菜单-->
+                    <HomeMenu class="heightAll"></HomeMenu>
+<!--                </el-scrollbar>-->
             </el-aside>
             <el-container>
 <!--                内容-->
-                <el-main>Main</el-main>
+                <el-main>
+                    <router-view></router-view>
+                </el-main>
 <!--                底部-->
                 <el-footer>Footer</el-footer>
             </el-container>
@@ -75,21 +26,16 @@
 </template>
 
 <script>
-
+import HomeMenu from '@/components/HomeMenu'
 
 export default {
     name: 'HomeView',
-    data() {
-        return {
-            isCollapse: false
-        };
+    components:{
+        HomeMenu
     },
-    methods: {
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
+    data(){
+        return{
+            isCollapse:true
         }
     }
 }
@@ -101,26 +47,21 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     //text-align: center;
-    color: #2c3e50;
     height: 100%;
 }
 
-
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
+.heightAll{
+    height: 100%;
 }
-
 
 .el-header {
     background-color: #baf2bb;
-
 }
 
 .el-aside {
     line-height: 100vh;
     border-radius: 20px;
-    background-color: #e9ecef;
+    background-color: #6b9080;
 }
 
 .el-main {
