@@ -37,26 +37,44 @@
             <i class="el-icon-setting"></i>
             <span slot="title">导航四</span>
         </el-menu-item>
-        <el-menu-item index="5">
-            <i class="el-icon-setting"></i>
-            <span slot="title">项目信息</span>
-        </el-menu-item>
-        <el-menu-item index="6">
-            <i class="el-icon-setting"></i>
-            <span slot="title">项目跟踪</span>
-        </el-menu-item>
+        <el-submenu index="5">
+            <template slot="title">
+                <i class="el-icon-tickets"></i>
+                <span slot="title">项目信息</span>
+            </template>
+            <el-menu-item index="5-1">主导产业链数据</el-menu-item>
+            <el-menu-item index="5-2">有价值项目列表</el-menu-item>
+            <el-menu-item index="5-3">外出拜访企业情况</el-menu-item>
+        </el-submenu>
+
+        <el-submenu index="6">
+            <template slot="title">
+                <i class="el-icon-discount"></i>
+                <span slot="title">项目跟踪</span>
+            </template>
+            <el-menu-item index="6-1">项目进度</el-menu-item>
+            <el-menu-item index="6-2">项目全部详细情况</el-menu-item>
+        </el-submenu>
+
+
         <el-menu-item index="7">
-            <i class="el-icon-setting"></i>
+            <i class="el-icon-receiving"></i>
             <span slot="title">项目预审</span>
         </el-menu-item>
-        <el-menu-item index="8">
-            <i class="el-icon-setting"></i>
-            <span slot="title">项目审核</span>
-        </el-menu-item>
+
+        <el-submenu index="8">
+            <template slot="title">
+                <i class="el-icon-document-checked"></i>
+                <span slot="title">项目审核</span>
+            </template>
+            <el-menu-item index="8-1">4.1</el-menu-item>
+            <el-menu-item index="8-2">4.2</el-menu-item>
+        </el-submenu>
+
 
         <el-submenu index="10">
             <template slot="title">
-                <i class="el-icon-location"></i>
+                <i class="el-icon-magic-stick"></i>
                 <span slot="title">测试</span>
             </template>
             <el-menu-item index="101">测试1</el-menu-item>
@@ -83,7 +101,7 @@
 
 <script>
 export default {
-name: "HomeMenu",
+    name: "HomeMenu",
     data() {
         return {
             isCollapse: false

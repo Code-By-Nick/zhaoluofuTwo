@@ -16,7 +16,7 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="danger" @click="deleteAll">批量删除</el-button>
+                <el-button type="danger" @click="deleteAll(tableChecked)" :disabled=" !tableChecked">批量删除</el-button>
             </el-form-item>
 
             <el-form-item>
@@ -25,7 +25,7 @@
         </el-form>
 
         <!-- 表格内容-->
-        <el-table :data="tableData"  v-loading="loading" border stripe height="700" style="width: 100%">
+        <el-table :data="tableData"  v-loading="loading" border stripe height="700" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection"/>
             <el-table-column type="index" label="序号"/>
             <el-table-column prop="id" label="引进战队"/>
@@ -85,8 +85,9 @@ export default {
             },
             total: 0,
             loading:true,
-            tableData: []
-
+            tableData: [],
+            tableChecked:[],    //被选中的记录数据-----对应“批量删除”传的参数值
+            id:[]   //批量删除id
         }
     },
     created() {
@@ -102,7 +103,43 @@ export default {
             })
         },
         //批量删除
-        deleteAll(){},
+        deleteAll(rows){
+
+            console.log(rows)
+
+          /*  var _this = this;
+            _this.$confirm('是否确认此操作?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                rows.forEach(element =>{
+                    _this.ids.push(element.chargingStationId)
+                })
+                let param = {
+                    "token": getSessiontoken('token'),
+                    "chargingStationIdList":_this.ids
+                }
+                deleteAllCharging(param).then(function (res) {
+                    var obj = JSON.parse(utilFile.decrypt(res.data.a));
+                    if (obj.code == '200') {
+                        _this.$message.success('操作成功');
+                        _this.chargingUserList();
+                    } else {
+                        _this.$message.error(obj.msg);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                })
+
+            }).catch(() => {
+                alert(2)
+                this.$message({
+                    type: 'info',
+                    message: '已取消'
+                });
+            });*/
+        },
         handleSizeChange(val) {
             this.info.pagesize = val;
             this.sendRequest();
@@ -112,7 +149,13 @@ export default {
             this.info.pagenum = val;
             this.sendRequest();
             console.log(`当前页: ${val}`);
-        }
+        },
+        //表格数据选中
+        handleSelectionChange(val) {
+            console.log("handleSelectionChange--",val)
+            this.tableChecked = val
+        },
+
     }
 }
 </script>
