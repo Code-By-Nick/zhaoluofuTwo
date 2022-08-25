@@ -1,6 +1,7 @@
 <template>
     <el-container id="app">
         <el-header>
+            Rainbow bar
 <!--            <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">-->
 <!--                <el-radio-button :label="false">展开</el-radio-button>-->
 <!--                <el-radio-button :label="true">收起</el-radio-button>-->
@@ -55,7 +56,22 @@ export default {
 }
 
 .el-header {
-    background-color: #c8c9cc;
+    text-align: center;
+    color: white;
+    font-size: 5vh;
+    font-family:'等线';
+    background: linear-gradient(90deg,  #ffc700 0%, #e91e1e 33%, #6f27b0 66%, #00ff88 100%);
+    background-position: 100% 0;
+    animation: bgSize 5s infinite ease-in-out alternate;
+}
+
+@keyframes bgSize {
+    0% {
+        background-size: 300% 100%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
 }
 
 .el-aside {

@@ -1,7 +1,8 @@
 <template>
     <el-menu default-active="5"
              class="el-menu-vertical-demo"
-             background-color="#e9ecef"
+             background-color="#F2F6FC"
+             active-text-color="#3662DC"
              router
              @open="handleOpen"
              @close="handleClose"
@@ -78,7 +79,10 @@
                 <span slot="title">测试</span>
             </template>
             <el-menu-item index="101">测试1</el-menu-item>
+            <el-menu-item index="102">测试2</el-menu-item>
         </el-submenu>
+
+
         <el-menu-item index="8" disabled>
             <i class="el-icon-setting"></i>
             <span slot="title">项目审核</span>

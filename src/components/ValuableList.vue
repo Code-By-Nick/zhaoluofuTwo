@@ -16,11 +16,11 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="danger" @click="deleteAll(tableChecked)" :disabled=" !tableChecked">批量删除</el-button>
+                <el-button type="danger" @click="deleteAll(tableChecked)" :disabled="this.tableChecked.length != 0 ? false : true">批量删除</el-button>
             </el-form-item>
 
             <el-form-item>
-                <el-button type="danger" @click="sendRequest">发送请求</el-button>
+                <el-button type="info" @click="sendRequest">发送请求</el-button>
             </el-form-item>
         </el-form>
 
@@ -28,15 +28,20 @@
         <el-table :data="tableData"  v-loading="loading" border stripe height="700" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection"/>
             <el-table-column type="index" label="序号"/>
-            <el-table-column prop="id" label="引进战队"/>
-            <el-table-column prop="company" label="引进部门"/>
-            <el-table-column prop="age" label="上报时间"/>
+            <el-table-column prop="id" label="引进战队" sortable/>
+            <el-table-column prop="company" label="引进部门" />
+            <el-table-column prop="age" label="上报时间" sortable>
+                <template slot-scope="scope">
+                    <el-tag  :type="scope.row.age == 21 ?  'success' : (scope.row.age == 22 ? '' : 'danger') ">{{scope.row.age}}</el-tag>
+                </template>
+            </el-table-column>
             <el-table-column prop="username" label="项目名称"/>
             <el-table-column prop="mobile" label="项目简介"/>
             <el-table-column prop="mobile" label="产业分类"/>
             <el-table-column prop="mobile" label="其他产业具体内容"/>
             <el-table-column prop="mobile" label="计划投资(亿元)"/>
             <el-table-column prop="mobile" label="投资公司名称"/>
+<!--            <el-table-column prop="mobile" render-header="werwe" />-->
             <el-table-column prop="mobile" label="投资方介绍"/>
             <el-table-column prop="mobile" label="企业负责人及联系方式"/>
             <el-table-column prop="mobile" label="企业类型"/>
@@ -87,7 +92,7 @@ export default {
             loading:true,
             tableData: [],
             tableChecked:[],    //被选中的记录数据-----对应“批量删除”传的参数值
-            id:[]   //批量删除id
+            idArr:[]   //批量删除id
         }
     },
     created() {
@@ -99,28 +104,36 @@ export default {
                 this.loading = false;    //取消表格加载状态
                 this.total = res.data.data.length;  //总数据条数
                 this.tableData = res.data.data;     //获取的表格数据
-                console.log(res.data.data)
+                //console.log(res.data.data)
             })
         },
         //批量删除
         deleteAll(rows){
 
+
             console.log(rows)
 
-          /*  var _this = this;
+            let _this = this;
             _this.$confirm('是否确认此操作?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
                 rows.forEach(element =>{
-                    _this.ids.push(element.chargingStationId)
+                    _this.idArr.push(element.id)
                 })
-                let param = {
+
+                console.log(_this.idArr)
+
+                _this.axios.post('/data/delete',{ids:_this.idArr}).then(res => {
+                    console.log(res)
+                })
+
+        /*        let param = {
                     "token": getSessiontoken('token'),
                     "chargingStationIdList":_this.ids
-                }
-                deleteAllCharging(param).then(function (res) {
+                }*/
+          /*      deleteAllCharging(param).then(function (res) {
                     var obj = JSON.parse(utilFile.decrypt(res.data.a));
                     if (obj.code == '200') {
                         _this.$message.success('操作成功');
@@ -130,7 +143,7 @@ export default {
                     }
                 }).catch(function (err) {
                     console.log(err);
-                })
+                })*/
 
             }).catch(() => {
                 alert(2)
@@ -138,22 +151,27 @@ export default {
                     type: 'info',
                     message: '已取消'
                 });
-            });*/
+            });
         },
+        //分页的每页条数
         handleSizeChange(val) {
             this.info.pagesize = val;
             this.sendRequest();
             console.log(`每页 ${val} 条`);
         },
+        //分页的当前页面
         handleCurrentChange(val) {
             this.info.pagenum = val;
             this.sendRequest();
             console.log(`当前页: ${val}`);
         },
-        //表格数据选中
+        //表格数据选中的条
         handleSelectionChange(val) {
             console.log("handleSelectionChange--",val)
-            this.tableChecked = val
+            this.tableChecked = val;
+            //console.log('输出',this.tableChecked )
+            //console.log(Object.prototype.toString.call(this.tableChecked))
+            //.log(this.tableChecked.length == 0 ? false : true)
         },
 
     }

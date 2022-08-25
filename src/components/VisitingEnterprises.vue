@@ -110,7 +110,7 @@ name: "VisitingEnterprises",
                 this.loading = false;    //取消表格加载状态
                 this.total = res.data.data.length;  //总数据条数
                 this.tableData = res.data.data;     //获取的表格数据
-                console.log(res.data)
+                //console.log(res.data)
             })
         },
         // 分页每页条数
@@ -124,6 +124,10 @@ name: "VisitingEnterprises",
             this.info.pagenum = val;
             this.sendRequest();
             console.log(`当前页: ${val}`);
+        },
+        //改变某条数据的状态
+        changeStatus(id){
+            console.log(id)
         }
     }
 }

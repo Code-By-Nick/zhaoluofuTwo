@@ -20,7 +20,8 @@ const routes = [
         children: [
             {path: '/5-2', component: () => import('@/components/ValuableList')},
             {path: '/5-3', component: () => import('@/components/VisitingEnterprises')},
-            {path: '/101', component: () => import('@/components/TestTable')}
+            {path: '/101', component: () => import('@/components/TestTable')},
+            {path: '/102', component: () => import('@/components/TestSelect')}
         ]
     },
     {
