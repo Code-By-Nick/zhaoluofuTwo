@@ -1,26 +1,20 @@
 <template>
     <el-container id="app">
-        <el-header>
-            Rainbow bar
-<!--            <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">-->
-<!--                <el-radio-button :label="false">展开</el-radio-button>-->
-<!--                <el-radio-button :label="true">收起</el-radio-button>-->
-<!--            </el-radio-group>-->
-        </el-header>
-        <el-container>
-            <el-aside width="200px" style="overflow:auto">
-<!--                <el-scrollbar style="height: 100%">-->
-                    <!--菜单-->
-                    <HomeMenu class="heightAll"></HomeMenu>
-<!--                </el-scrollbar>-->
-            </el-aside>
 
-<!--                内容-->
-                <el-main>
-                    <router-view></router-view>
-                </el-main>
-<!--                底部-->
-<!--                <el-footer>Footer</el-footer>-->
+        <el-aside width="200px" style="overflow:auto">
+            <HomeMenu class="heightAll"></HomeMenu>
+        </el-aside>
+
+        <el-container>
+            <!--头部-->
+            <el-header>
+                Zhao Luo Fu
+            </el-header>
+
+            <!--内容-->
+            <el-main>
+                <router-view></router-view>
+            </el-main>
 
         </el-container>
     </el-container>
@@ -49,19 +43,35 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     //text-align: center;
     height: 100%;
+
 }
 
 .heightAll{
     height: 100%;
+    overflow-x: hidden;
+    //overflow-y:hidden;
+    //overflow-y: scroll;
 }
+
+
 
 .el-header {
     text-align: center;
     color: white;
     font-size: 5vh;
+
+    display:flex;
+    justify-content:center;
+    align-items: center;
+
+    margin: 10px 10px 4px 16px;
+    border-radius: 4px;
+
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
+
+
     font-family:'等线';
-    background: linear-gradient(90deg,  #ffc700 0%, #e91e1e 33%, #6f27b0 66%, #00ff88 100%);
-    background-position: 100% 0;
+    background: linear-gradient(90deg, #ffc700 0%, #e91e1e 33%, #6f27b0 66%, #00ff88 100%) 100% 0;
     animation: bgSize 5s infinite ease-in-out alternate;
 }
 
@@ -76,12 +86,18 @@ export default {
 
 .el-aside {
     line-height: 100vh;
-    border-radius: 20px;
+    border-radius: 4px;
     background-color: #6b9080;
+
+    //border-radius: var(--el-border-radius-base);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
+
+    margin: 10px 0 16px 16px;
 }
 
 .el-main {
-    background-color: #f8f9fa;
+    //background-color: #f8f9fa;
+    margin: 2px 0 0 1px;
 }
 
 

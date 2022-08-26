@@ -8,15 +8,15 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary">搜索</el-button>
+                <el-button type="primary"><i class="el-icon-search" ></i> 搜 索</el-button>
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="addDialogVisible = true">添加</el-button>
+                <el-button type="primary" @click="addDialogVisible = true"><i class="el-icon-circle-plus-outline" ></i> 添 加</el-button>
             </el-form-item>
 
             <el-form-item>
-                <el-button type="danger" @click="deleteAll(tableChecked)" :disabled="this.tableChecked.length != 0 ? false : true">批量删除</el-button>
+                <el-button type="danger" @click="deleteAll(tableChecked)" :disabled="this.tableChecked.length != 0 ? false : true"><i class="el-icon-delete" ></i> 批量删除</el-button>
             </el-form-item>
 
             <el-form-item>
@@ -25,7 +25,7 @@
         </el-form>
 
         <!-- 表格内容-->
-        <el-table :data="tableData"  v-loading="loading" border stripe height="700" style="width: 100%" @selection-change="handleSelectionChange">
+        <el-table :data="tableData"  v-loading="loading" border stripe height="720" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection"/>
             <el-table-column type="index" label="序号"/>
             <el-table-column prop="id" label="引进战队" sortable/>
@@ -153,15 +153,15 @@ export default {
                 });
             });
         },
-        //分页的每页条数
+        //分页:每页条数
         handleSizeChange(val) {
-            this.info.pagesize = val;
+            this.info.pageSize = val;
             this.sendRequest();
             console.log(`每页 ${val} 条`);
         },
-        //分页的当前页面
+        //分页:当前页码
         handleCurrentChange(val) {
-            this.info.pagenum = val;
+            this.info.pageNum = val;
             this.sendRequest();
             console.log(`当前页: ${val}`);
         },

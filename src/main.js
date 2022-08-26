@@ -25,7 +25,6 @@ NProgress.configure({ showSpinner: true })   // 显示右上角螺旋加载提�
 axios.interceptors.request.use(config => {
   //开启进度条
   NProgress.start();
-
   //为请求头对象，添加token 验证的 Authorization 字段
   // config.headers.Authorization = sessionStorage.getItem("token");
   return config;
@@ -36,7 +35,6 @@ axios.interceptors.response.use(config=>{
   NProgress.done();
   return config;
 });
-
 
 
 
