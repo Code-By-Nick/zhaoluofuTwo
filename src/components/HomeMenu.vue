@@ -80,6 +80,7 @@
             </template>
             <el-menu-item index="101">测试1</el-menu-item>
             <el-menu-item index="102">测试2</el-menu-item>
+            <el-menu-item index="103">添加对话框</el-menu-item>
         </el-submenu>
 
 

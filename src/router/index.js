@@ -28,6 +28,7 @@ const routes = [
             {path: '/5-3', component: () => import('@/components/VisitingEnterprises')},
             {path: '/101', component: () => import('@/components/TestTable')},
             {path: '/102', component: () => import('@/components/TestSelect')},
+            {path: '/103', component: () => import('@/components/my-dialog')},
             {path: '/91', component: () => import('@/components/ProvincialProject')},
         ]
     },

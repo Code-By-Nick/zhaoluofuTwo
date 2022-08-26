@@ -41,7 +41,6 @@
             <el-table-column prop="mobile" label="其他产业具体内容"/>
             <el-table-column prop="mobile" label="计划投资(亿元)"/>
             <el-table-column prop="mobile" label="投资公司名称"/>
-<!--            <el-table-column prop="mobile" render-header="werwe" />-->
             <el-table-column prop="mobile" label="投资方介绍"/>
             <el-table-column prop="mobile" label="企业负责人及联系方式"/>
             <el-table-column prop="mobile" label="企业类型"/>
