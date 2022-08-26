@@ -8,7 +8,7 @@
         <el-container>
             <!--头部-->
             <el-header>
-                Zhao Luo Fu
+                <span class="headTitle">Zhao Luo Fu</span>
             </el-header>
 
             <!--内容-->
@@ -59,6 +59,9 @@ export default {
     text-align: center;
     color: white;
     font-size: 5vh;
+    //opacity:0.7;
+    //filter: blur(20px);
+
 
     display:flex;
     justify-content:center;
@@ -66,13 +69,27 @@ export default {
 
     margin: 10px 10px 4px 16px;
     border-radius: 4px;
-
     box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
 
 
-    font-family:'等线';
-    background: linear-gradient(90deg, #ffc700 0%, #e91e1e 33%, #6f27b0 66%, #00ff88 100%) 100% 0;
-    animation: bgSize 5s infinite ease-in-out alternate;
+    &::before{//将背景和高斯模糊全部设置在了伪元素内，并让伪元素的z-index为-1，避免遮盖其他元素
+        content: '';
+        width: 86%;
+        height: 8%;
+        position: absolute;
+        z-index: -1;
+        //background: url('../images/tudou.jpg');
+        filter: blur(20px);
+        //-webkit-filter: blur(3px);
+
+        background: linear-gradient(90deg, #ffc700 0%, #e91e1e 33%, #6f27b0 66%, #00ff88 100%) 100% 0;
+        animation: bgSize 5s infinite ease-in-out alternate;
+    }
+
+    .headTitle{
+        //backdrop-filter: blur(20px);
+        font-family:'等线';
+    }
 }
 
 @keyframes bgSize {
@@ -97,7 +114,7 @@ export default {
 
 .el-main {
     //background-color: #f8f9fa;
-    margin: 2px 0 0 1px;
+    //margin: 2px 0 0 1px;
 }
 
 

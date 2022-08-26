@@ -1,5 +1,5 @@
 <template>
-    <!--    有价值项目列表-->
+    <!--    省市级重点项目-->
     <el-card>
         <!--操作按钮-->
         <el-form :inline="true" class="demo-form-inline">
@@ -20,36 +20,56 @@
             </el-form-item>
 
             <el-form-item>
+
                 <el-button type="info" @click="sendRequest">发送请求</el-button>
+            </el-form-item>
+
+            <el-form-item>
+<!--                <el-button type="info" @click="sendRequest">发送请求</el-button>-->
+                <span>请选择年份： </span>
+                <el-select v-model="optionValue" placeholder="请选择" @change="optionChecked">
+                    <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                    </el-option>
+                </el-select>
             </el-form-item>
         </el-form>
 
         <!-- 表格内容-->
-        <el-table :data="tableData"  v-loading="loading" border stripe height="700" style="width: 100%" @selection-change="handleSelectionChange">
+        <el-table :data="tableData"  v-loading="loading" border stripe height="720" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection"/>
             <el-table-column type="index" label="序号"/>
-            <el-table-column prop="id" label="引进战队" sortable/>
-            <el-table-column prop="company" label="引进部门" />
-            <el-table-column prop="age" label="上报时间" sortable>
+            <el-table-column prop="id" label="项目名称" />
+            <el-table-column prop="f_projectLegalPersons" label="项目法人" />
+            <el-table-column prop="f_constructionQuality" label="建设性质" sortable>
                 <template slot-scope="scope">
                     <el-tag  :type="scope.row.age == 21 ?  'success' : (scope.row.age == 22 ? '' : 'danger') ">{{scope.row.age}}</el-tag>
                 </template>
             </el-table-column>
-            <el-table-column prop="username" label="项目名称"/>
-            <el-table-column prop="mobile" label="项目简介"/>
-            <el-table-column prop="mobile" label="产业分类"/>
-            <el-table-column prop="mobile" label="其他产业具体内容"/>
-            <el-table-column prop="mobile" label="计划投资(亿元)"/>
-            <el-table-column prop="mobile" label="投资公司名称"/>
-<!--            <el-table-column prop="mobile" render-header="werwe" />-->
-            <el-table-column prop="mobile" label="投资方介绍"/>
-            <el-table-column prop="mobile" label="企业负责人及联系方式"/>
-            <el-table-column prop="mobile" label="企业类型"/>
-            <el-table-column prop="mobile" label="项目进展情况"/>
-            <el-table-column prop="mobile" label="下一步推进计划"/>
-            <el-table-column prop="mobile" label="导出"/>
-            <el-table-column prop="role_name" label="角色"/>
-            <el-table-column prop="status" label="状态">
+            <el-table-column prop="f_porojectTypeID" label="项目类型" sortable/>
+            <el-table-column prop="f_constructionSite" label="建设地点"/>
+            <el-table-column prop="f_approveFile" label="批准文件"/>
+            <el-table-column prop="f_mainContent" label="主要建设内容及规模"/>
+            <el-table-column prop="mobile" label="建设用地面积(亩)"/>
+            <el-table-column prop="f_startAndEndYears" label="建设起止年限"/>
+            <el-table-column prop="f_sumInvestment" label="总投资"/>
+            <el-table-column prop="f_yearInvestment" :label="optionValue + '年底累计完成投资'"/>
+            <el-table-column  :label=" parseInt(optionValue ) + 1 + '年计划'">
+                <el-table-column prop="f_nextYearPlanInvestment" label="投资"/>
+                <el-table-column prop="f_nextYearContent" label="主要建设内容"/>
+            </el-table-column>
+            <el-table-column prop="f_imageProgress" label="形象进度"/>
+            <el-table-column prop="f_commencementStatus" label="开工状态"/>
+            <el-table-column prop="f_lnboundStatus" label="入库状态"/>
+            <el-table-column prop="role_name" label="责任单位"/>
+            <el-table-column prop="f_contact" label="联系人"/>
+            <el-table-column prop="f_phone" label="联系电话"/>
+            <el-table-column prop="role_name" label="包联领导"/>
+            <el-table-column prop="f_remark" label="备注"/>
+            <el-table-column prop="status" label="调度管理">
                 <template v-slot="slotProps">
                     <el-switch v-model="slotProps.row.status" @change="changeStatus(slotProps.row)"/>
                 </template>
@@ -78,9 +98,8 @@
 </template>
 
 <script>
-
 export default {
-    name: "ValuableList",
+name: "ProvincialProject",
     data() {
         return {
             info: {
@@ -89,10 +108,26 @@ export default {
                 pageSize: 5
             },
             total: 0,
-            loading:true,
+            loading: true,
             tableData: [],
-            tableChecked:[],    //被选中的记录数据-----对应“批量删除”传的参数值
-            idArr:[]   //批量删除id
+            tableChecked: [],    //被选中的记录数据-----对应“批量删除”传的参数值
+            idArr: [],   //批量删除id
+            //下拉菜单选择
+            options: [
+                {
+                    value: '2022',
+                    label: '2022年',
+                },
+                {
+                    value: '2023',
+                    label: '2023年'
+                },
+                {
+                    value: '2024',
+                    label: '2024年'
+                }
+            ],
+            optionValue: '2022'
         }
     },
     created() {
@@ -129,21 +164,21 @@ export default {
                     console.log(res)
                 })
 
-        /*        let param = {
-                    "token": getSessiontoken('token'),
-                    "chargingStationIdList":_this.ids
-                }*/
-          /*      deleteAllCharging(param).then(function (res) {
-                    var obj = JSON.parse(utilFile.decrypt(res.data.a));
-                    if (obj.code == '200') {
-                        _this.$message.success('操作成功');
-                        _this.chargingUserList();
-                    } else {
-                        _this.$message.error(obj.msg);
-                    }
-                }).catch(function (err) {
-                    console.log(err);
-                })*/
+                /*        let param = {
+                            "token": getSessiontoken('token'),
+                            "chargingStationIdList":_this.ids
+                        }*/
+                /*      deleteAllCharging(param).then(function (res) {
+                          var obj = JSON.parse(utilFile.decrypt(res.data.a));
+                          if (obj.code == '200') {
+                              _this.$message.success('操作成功');
+                              _this.chargingUserList();
+                          } else {
+                              _this.$message.error(obj.msg);
+                          }
+                      }).catch(function (err) {
+                          console.log(err);
+                      })*/
 
             }).catch(() => {
                 alert(2)
@@ -173,14 +208,15 @@ export default {
             //console.log(Object.prototype.toString.call(this.tableChecked))
             //.log(this.tableChecked.length == 0 ? false : true)
         },
+        //下拉框选择的年份
+        optionChecked(val){
+            console.log('下拉框',val)
+        }
 
     }
 }
 </script>
 
 <style scoped>
-.el-card {
-    height: 100%;
-}
 
 </style>

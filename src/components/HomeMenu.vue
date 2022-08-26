@@ -83,22 +83,23 @@
         </el-submenu>
 
 
+        <el-submenu index="9">
+            <template slot="title">
+                <i class="el-icon-menu"></i>
+                <span slot="title">重点项目办</span>
+            </template>
+            <el-menu-item index="91">省市级重点项目</el-menu-item>
+            <el-menu-item index="92">领导包联重点项目</el-menu-item>
+            <el-menu-item index="93">集中开工项目</el-menu-item>
+            <el-menu-item index="94">竣工投产项目</el-menu-item>
+        </el-submenu>
+
+
         <el-menu-item index="8" disabled>
             <i class="el-icon-setting"></i>
             <span slot="title">项目审核</span>
         </el-menu-item>
-        <el-menu-item index="8" disabled>
-            <i class="el-icon-setting"></i>
-            <span slot="title">项目审核</span>
-        </el-menu-item>
-        <el-menu-item index="8" disabled>
-            <i class="el-icon-setting"></i>
-            <span slot="title">项目审核</span>
-        </el-menu-item>
-        <el-menu-item index="8" disabled>
-            <i class="el-icon-setting"></i>
-            <span slot="title">项目审核</span>
-        </el-menu-item>
+
 
     </el-menu>
 </template>
